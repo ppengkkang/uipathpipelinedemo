@@ -1,0 +1,36 @@
+pipeline {
+  agent any
+  environment {
+      MAJOR = '1'
+      MINOR = '0'
+  }
+  stages {
+      
+    // stage('Check Out')  {
+    //     steps {
+    //         git url: 'https://github.com/ppengkkang/uipathpipelinedemo.git', branch: 'main'
+    //     }
+    // }
+    
+    stage('Deploy') {
+          steps {
+            UiPathDeploy (
+                packagePath: "C:\\uipath\\jenkins\\workspace\\uipathdemoci\\Output\\3\\TestJenkins.1.0.3.nupkg",
+                createProcess: false,
+                orchestratorAddress: "https://cloud.uipath.com/ppengkkang/DefaultTenant",
+                orchestratorTenant: "DefaultTenant",
+                folderName: "Shared",
+                environments: "environment",
+                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'ocadmin'],
+                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey'],
+                credentials: Token(accountName: "ppengkkang@163.com", credentialsId: 'APIUserKey'),
+                traceLevel: 'None',
+                entryPointPaths: 'C:\\uipath\\jenkins\\workspace\\uipathdemoci\\Main.xaml'
+            )
+          }
+    }
+    
+    
+  }
+}
+
