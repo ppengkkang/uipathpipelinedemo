@@ -1,0 +1,33 @@
+pipeline {
+  agent any
+  environment {
+      MAJOR = '1'
+      MINOR = '0'
+  }
+  stages {
+      
+    stage('Check Out')  {
+        steps {
+            //git url: 'https://github.com/ppengkkang/uipathpipelinedemo.git', branch: 'main'
+            bat 'echo %PATH%'
+        }
+    }
+    
+    // stage ('Pack') {
+    //   steps {
+    //         bat """
+    //         C:/test/UiPath/Studio/UiPath.Studio.CommandLine.exe publish --project-path "C:/uipath/jenkins/workspace/uipathdemoci/project.json" --target Custom --feed "C:/uipath/target " --notes "Fixed a couple of bugs."
+    //         """
+    //   }
+    // }
+    
+    stage ('Deploy') {
+      steps {
+            bat """
+            C:/test/UiPath/Studio/UiPath.Studio.CommandLine.exe publish --project-path "C:/uipath/jenkins/workspace/uipathdemoci/project.json" --target OrchestratorTenant "93271bf44fad41a98665f5cdefc51631" --notes "Fixed a couple of bugs."
+            """
+      }
+    }
+  }
+}
+
