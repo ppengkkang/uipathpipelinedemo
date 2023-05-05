@@ -1,4 +1,7 @@
 pipeline {
+//     agent {
+//       label 'uipath'
+//   }
   agent any
   environment {
       MAJOR = '1'
@@ -11,6 +14,22 @@ pipeline {
             git url: 'https://github.com/ppengkkang/uipathpipelinedemo.git', branch: 'main'
         }
     }
+    
+    stage ('InstallPlatform') {
+      steps {
+        UiPathInstallPlatform (
+          traceLevel: "Verbose",
+          //cliNupkgPath: "C:\\jenkinsagent\\workspace\\UiPath.CLI.Windows.23.2.8467.25277.nupkg",
+          cliNupkgPath: "C:\\uipath\\nupkg\\UiPath.CLI.Windows.22.10.8438.32859.nupkg",
+          //cliNupkgPath: "C:\\uipath\\jenkins\\workspace\\UiPath.CLI.Windows.23.2.8467.25277.nupkg",
+          //cliVersion: "UiPath Windows CLI(ver.23.2.8467.25277)",
+          //cliVersion: "WIN_23.2.8467.25277",
+          cliVersion: "WIN_22.10.8438.32859",
+          forceInstall: true
+        )
+      }
+    }
+    
     
     stage ('Pack') {
       steps {
