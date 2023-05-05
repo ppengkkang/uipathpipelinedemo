@@ -9,11 +9,11 @@ pipeline {
   }
   stages {
       
-    stage('Check Out')  {
-        steps {
-            git url: 'https://github.com/ppengkkang/uipathpipelinedemo.git', branch: 'main'
-        }
-    }
+    //stage('Check Out')  {
+    //    steps {
+    //        git url: 'https://github.com/ppengkkang/uipathpipelinedemo.git', branch: 'main'
+    //    }
+    //}
     
     stage ('InstallPlatform') {
       steps {
