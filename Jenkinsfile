@@ -20,7 +20,7 @@ pipeline {
         UiPathInstallPlatform (
           traceLevel: "Verbose",
           //cliNupkgPath: "C:\\jenkinsagent\\workspace\\UiPath.CLI.Windows.23.2.8467.25277.nupkg",
-          cliNupkgPath: "C:\\uipath\\nupkg\\UiPath.CLI.Windows.22.10.8438.32859.nupkg",
+          cliNupkgPath: "C:\\Users\\Vishnu.Kothamasu\\Downloads\\UiPath.CLI.Windows.22.10.8438.32859.nupkg",
           //cliNupkgPath: "C:\\uipath\\jenkins\\workspace\\UiPath.CLI.Windows.23.2.8467.25277.nupkg",
           //cliVersion: "UiPath Windows CLI(ver.23.2.8467.25277)",
           //cliVersion: "WIN_23.2.8467.25277",
@@ -34,8 +34,8 @@ pipeline {
     stage ('Pack') {
       steps {
         UiPathPack (
-          outputPath: "Output\\${env.BUILD_NUMBER}",
-          projectJsonPath: "project.json",
+          outputPath: "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Multibranch\\Output\\${env.BUILD_NUMBER}",
+          projectJsonPath: "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Multibranch,
           version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
           useOrchestrator: true,
           traceLevel: "None",
